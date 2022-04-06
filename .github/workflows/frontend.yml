@@ -33,13 +33,15 @@ jobs:
           file: ./dockerfile.v1
           push: true
           tags: |
-            vashka99/lab6:ghfront1
+            vashka99/lab6:ghfront2
       - name: Set up QEMU
         id: qemu
         uses: docker/setup-qemu-action@v1
         with:
-          image: tonistiigi/binfmt:latest
-          platforms: all
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: user/app:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest}}
         
